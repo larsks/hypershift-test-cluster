@@ -1,0 +1,8 @@
+- hosts: cmc
+  gather_facts: false
+  tasks:
+    - raw: "{{ racadm_command }}"
+      register: action
+
+    - debug:
+        msg: "{{ action.stdout_lines }}"

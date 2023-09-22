@@ -1,0 +1,9 @@
+- hosts: systems
+  gather_facts: false
+  tasks:
+    - delegate_to: "{{ cmcaddr }}"
+      raw: serveraction -m {{ cmcslot }} -f reseat
+      register: action
+
+    - debug:
+        msg: "{{ inventory_hostname }}: {{ action.stdout|trim }}"

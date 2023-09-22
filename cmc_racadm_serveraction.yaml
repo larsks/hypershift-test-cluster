@@ -1,0 +1,11 @@
+- hosts: systems
+  gather_facts: false
+  vars:
+    server_action: powerstatus
+  tasks:
+    - delegate_to: "{{ cmcaddr }}"
+      raw: serveraction -m {{ cmcslot }} {{ server_action }}
+      register: action
+
+    - debug:
+        msg: "{{ inventory_hostname }}: {{ action.stdout|trim }}"
