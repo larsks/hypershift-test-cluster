@@ -12,7 +12,7 @@ all:
         ansible_user: core
         ansible_python_interpreter: /usr/bin/python3.9
       children:
-        systems-on-cmc9:
+        systems_on_cmc9:
           vars:
             cmcaddr: cmc-9-obm.nerc-ocp-prod.rc.fas.harvard.edu
           hosts:
