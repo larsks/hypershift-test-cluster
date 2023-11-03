@@ -1,0 +1,50 @@
+apiVersion: v1
+
+# Additional parameters for hypershift-helm
+hypershift:
+  clusterImageSet: quay.io/openshift-release-dev/ocp-release:4.13.18-x86_64
+
+baseDomain: int.massopen.cloud
+compute:
+  - name: worker
+    replicas: {{ ansible_play_hosts_all|length }}
+metadata:
+  name: {{ clusterName }}
+networking:
+  clusterNetwork:
+    - cidr: 10.128.0.0/14
+      hostPrefix: 23
+  networkType: OVNKubernetes
+  serviceNetwork:
+    - 172.30.0.0/16
+platform:
+  baremetal:
+    apiVIP: {{ apiVip }}
+    ingressVIP: {{ ingressVip }}
+    hosts:
+{% for host in ansible_play_hosts_all %}
+      - name: {{ hostvars[host].inventory_hostname }}
+        role: worker
+        bmc:
+          address: "redfish-virtualmedia://{{ bmcAddr }}/redfish/v1/Systems/Systems.Embedded.1"
+          username: root
+          password: "{{ bmcpassword }}"
+        bootMACAddress: {{ hostvars[host].bootMacAddr }}
+        rootDeviceHints:
+          hctl: "1:0:0:0"
+        networkConfig:
+          interfaces:
+            - name: eno1
+              type: ethernet
+              macAddress: {{ hostvars[host].bootMacAddr }}
+              state: up
+              ipv4:
+                enabled: true
+                dhcp: true
+              ipv6:
+                enabled: false
+{% endfor %}
+pullSecret: |
+  {{ pullSecret }}
+sshKey: |
+  {{ sshPublicKey }}

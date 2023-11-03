@@ -1,0 +1,20 @@
+- hosts: vcluster1
+  gather_facts: false
+  tasks:
+  collections:
+    - community.general
+  vars:
+    redfish_base_url: "https://{{ bmcAddr }}"
+  pre_tasks:
+    - delegate_to: localhost
+      uri:
+        url: "{{ redfish_base_url }}/redfish/v1/Systems/System.Embedded.1/EthernetInterfaces?$expand=.($levels=1)"
+        url_username: root
+        url_password: "{{ bmcpassword }}"
+        validate_certs: false
+      register: interfaces
+
+    - set_fact:
+        bootMacAddr: interfaces.json|json_query("Members[0].MACAddress")
+  roles:
+    - vcluster

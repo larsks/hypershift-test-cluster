@@ -1,5 +1,13 @@
 all:
   children:
+    vcluster1:
+      vars:
+        clusterName: vcluster1
+        apiVip: 10.30.8.90
+        ingressVip: 10.30.8.91
+      hosts:
+        wrk-83:
+        wrk-84:
     cmc:
       vars:
         ansible_user: root
@@ -17,32 +25,61 @@ all:
             cmcaddr: cmc-9-obm.nerc-ocp-prod.rc.fas.harvard.edu
           hosts:
             wrk-72:
-              macaddr: 10:7d:1a:9d:f5:81
-              bmcaddr: wrk-72-obm.nerc-ocp-prod.rc.fas.harvard.edu
+              macAddr: 10:7d:1a:9d:f5:81
+              bmcAddr: wrk-72-obm.nerc-ocp-prod.rc.fas.harvard.edu
               ansible_host: 10.30.8.82
               cmcslot: server-1a
             wrk-74:
-              macaddr: 10:7d:1a:9d:f5:e9
-              bmcaddr: wrk-74-obm.nerc-ocp-prod.rc.fas.harvard.edu
+              macAddr: 10:7d:1a:9d:f5:e9
+              bmcAddr: wrk-74-obm.nerc-ocp-prod.rc.fas.harvard.edu
               ansible_host: 10.30.8.84
               cmcslot: server-1c
             wrk-75:
-              macaddr: 10:7d:1a:9d:fc:27
-              bmcaddr: wrk-75-obm.nerc-ocp-prod.rc.fas.harvard.edu
+              macAddr: 10:7d:1a:9d:fc:27
+              bmcAddr: wrk-75-obm.nerc-ocp-prod.rc.fas.harvard.edu
               ansible_host: 10.30.8.85
               cmcslot: server-1d
             wrk-76:
-              macaddr: 10:7d:1a:9d:f5:9b
-              bmcaddr: wrk-76-obm.nerc-ocp-prod.rc.fas.harvard.edu
+              macAddr: 10:7d:1a:9d:f5:9b
+              bmcAddr: wrk-76-obm.nerc-ocp-prod.rc.fas.harvard.edu
               ansible_host: 10.30.8.86
               cmcslot: server-3a
             wrk-77:
-              macaddr: 10:7d:1a:9d:f7:dd
-              bmcaddr: wrk-77-obm.nerc-ocp-prod.rc.fas.harvard.edu
+              macAddr: 10:7d:1a:9d:f7:dd
+              bmcAddr: wrk-77-obm.nerc-ocp-prod.rc.fas.harvard.edu
               ansible_host: 10.30.8.87
               cmcslot: server-3b
             wrk-78:
-              macaddr: 10:7d:1a:9d:f6:03
-              bmcaddr: wrk-78-obm.nerc-ocp-prod.rc.fas.harvard.edu
+              macAddr: 10:7d:1a:9d:f6:03
+              bmcAddr: wrk-78-obm.nerc-ocp-prod.rc.fas.harvard.edu
               ansible_host: 10.30.8.88
               cmcslot: server-3c
+        systems_on_cmc10:
+          vars:
+            cmcaddr: cmc-10-obm.nerc-ocp-prod.rc.fas.harvard.edu
+          hosts:
+            wrk-83:
+              macAddr: 10:7d:1a:9d:f5:81
+              bmcAddr: wrk-83-obm.nerc-ocp-prod.rc.fas.harvard.edu
+              ansible_host: 10.30.0.104
+              cmcslot: server-1a
+            wrk-84:
+              macAddr: 10:7d:1a:9d:f5:e9
+              bmcAddr: wrk-84-obm.nerc-ocp-prod.rc.fas.harvard.edu
+              ansible_host: 10.30.0.105
+              cmcslot: server-1c
+            wrk-85:
+              macAddr: 10:7d:1a:9d:fc:27
+              bmcAddr: wrk-85-obm.nerc-ocp-prod.rc.fas.harvard.edu
+              ansible_host: 10.30.0.106
+              cmcslot: server-1d
+            wrk-86:
+              macAddr: 10:7d:1a:9d:f5:9b
+              bmcAddr: wrk-86-obm.nerc-ocp-prod.rc.fas.harvard.edu
+              ansible_host: 10.30.0.107
+              cmcslot: server-3a
+            wrk-87:
+              macAddr: 10:7d:1a:9d:f7:dd
+              bmcAddr: wrk-87-obm.nerc-ocp-prod.rc.fas.harvard.edu
+              ansible_host: 10.30.0.108
+              cmcslot: server-3b

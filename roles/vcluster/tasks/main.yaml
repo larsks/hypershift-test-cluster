@@ -1,0 +1,6 @@
+- delegate_to: localhost
+  run_once: true
+  template:
+    src: install-config.j2.yaml
+    dest: install-config.yaml
+

@@ -3,7 +3,7 @@
   collections:
     - community.general
   vars:
-    redfish_base_url: "https://{{ bmcaddr }}"
+    redfish_base_url: "https://{{ bmcAddr }}"
     reset_type: GracefulShutdown
   tasks:
     - delegate_to: localhost
